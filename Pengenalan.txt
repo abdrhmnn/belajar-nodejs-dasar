@@ -1,0 +1,34 @@
+node js dibuat dengan engine V8 milik Google
+
+Thread yaitu sebuah proses ringan (pekerjaan) yang berjalan di dalam aplikasi, seperti membuka browser
+bisa membuat banyak website (tab)
+
+Concurrency mengerjakan pekerjaan satu persatu
+Parallel mengerjakan pekerjaan sekaligus dalam satu waktu
+
+Synchrounous yaitu proses execute kode program yg berjalan secara sequential (hrs menunggu semua proses selesai baru akan eksekusi ke proses selanjutnya)
+
+Asynchrounous yaitu proses execute kode program yg tidak perlu menunggu eksekusi kode nya selesai (bs lanjut ke proses execute selanjutnya)
+
+Synchrounous = blocking
+Asynchrounous = non blocking
+
+non blocking biasanya perlu mengirim callback untuk dipanggil oleh kode non-blocking tersebut ketika kodenya
+sudah selesai
+
+---------------------------------------
+
+node js itu berjalan secara event loop (single thread)
+artinya setiap thread di queue akan dijalankan satu persatu
+
+maka dari itu node js menyarankan kode yg kita buat itu dibuat utk bisa berjalan dgn non blocking
+
+kode yg berada di queue event loop akan dikirimkan ke c++ threadpool untuk menjalakan event (kode) nya,
+baru dari c++ threadpool mengirim callback ke event loop nya yg nantinya dari event loop mengirim response
+ke client
+
+di dalam c++ threadpool itu gak masalah kodenya blocking atau non blocking, yg penting ketika dia berada di queue event loop itu harus non blocking supaya tidak harus menunggu
+
+---------------------------------------
+
+Node js punya standard library nya yaitu library khusus yang bisa di pakai di ekosistem node js dan server
